@@ -67,7 +67,6 @@ sequenceDiagram
     deactivate server
 
     Note over browser,server: The browser executes the callback function that <br/> renders the notes
-
 ```
 
 # 0.6: New note on single-page application diagram
@@ -83,7 +82,5 @@ sequenceDiagram
     server-->>browser: Status Code :201 Create
     deactivate server
     
-
-    Note over browser,server: The browser executes the callback function that <br/> renders the notes
-    
+    Note over browser,server: The browser executes the callback function that <br/> renders the notes   
 ```
