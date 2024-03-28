@@ -1,9 +1,89 @@
 
 # 0.4: New note diagram
-> [![](https://mermaid.ink/img/pako:eNq9VE1v2zAM_SuEzo69djejyGUbOgzrBxDf6mFgZLpRY0ueRKctgvz30ZbTFigw1EUxn6xHiu_pSeReaVeRylWgPz1ZTV8N3npsSwvydejZaNOhZVh7dx_Ivw4IuBvwGJnSFstlxHP4XhTXcH21KmDD3IU8ywL3laGQ6pBuqAnGbk1am4wesO0awq7LLN3_to4p1kTNZodMT1QDGP8XQjRR5iC7Itv5twLYQeM0snEWsqFWiPsqelXun8qHWjOEPxO9VfUXuQChuvg5W988aS0aK-GZ6nhDcNwJtWnof6i8e6_IuwA_cIcr7U3Hb5F7KfcFToCj8OQou5CaEwaB5b0HoAfSPRt7OxK-IDpb-2w5NJIEUHiJ9YZCzFpdXULtXTuuPtarChnlyM7Oc-tmD6W0vWWyXKpcFsPrAyMHxPBYqkQQKU0xdvrp9PPiZHFSKjgkkKYp_PoQT6OZk0sam2aNegt1b_XYsqORo6_gyVbkY-LYXypRLXm58EoG134gLZUE20lxhX5bqtIeJA97dqtHq1XOvqdE9d1wsmnIqbzGJghKlWHnL-IkHAfi4S9Rh8Wv?type=png)](https://mermaid.live/edit#pako:eNq9VE1v2zAM_SuEzo69djejyGUbOgzrBxDf6mFgZLpRY0ueRKctgvz30ZbTFigw1EUxn6xHiu_pSeReaVeRylWgPz1ZTV8N3npsSwvydejZaNOhZVh7dx_Ivw4IuBvwGJnSFstlxHP4XhTXcH21KmDD3IU8ywL3laGQ6pBuqAnGbk1am4wesO0awq7LLN3_to4p1kTNZodMT1QDGP8XQjRR5iC7Itv5twLYQeM0snEWsqFWiPsqelXun8qHWjOEPxO9VfUXuQChuvg5W988aS0aK-GZ6nhDcNwJtWnof6i8e6_IuwA_cIcr7U3Hb5F7KfcFToCj8OQou5CaEwaB5b0HoAfSPRt7OxK-IDpb-2w5NJIEUHiJ9YZCzFpdXULtXTuuPtarChnlyM7Oc-tmD6W0vWWyXKpcFsPrAyMHxPBYqkQQKU0xdvrp9PPiZHFSKjgkkKYp_PoQT6OZk0sam2aNegt1b_XYsqORo6_gyVbkY-LYXypRLXm58EoG134gLZUE20lxhX5bqtIeJA97dqtHq1XOvqdE9d1wsmnIqbzGJghKlWHnL-IkHAfi4S9Rh8Wv)
+
+``` mermaid
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: new HTTP GET to location /notes
+    deactivate server
+
+    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: Code HTML
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the main.css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the main.js JavaScript file
+    deactivate server
+
+    Note over browser,server: The browser starts executing the JavaScript <br/>code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note over browser,server: The browser executes the callback function that <br/> renders the notes
+```
+
 
 # 0.5: Single page application diagram
-> [![](https://mermaid.ink/img/pako:eNq1VMFu2zAM_RVCZ8dOsw5FjSGXddgwrN2A-LS5B0aiay22pEly1iHIv4-OnKJAMaAZWp_kR4rv8YHiTkirSJQi0K-BjKQrjXce-9oAfw591FI7NBHW3v4O5J8GGNyOeIpMabPlMuElfKqqb_DxQwVtjC6URRHioDSFXIa8pS5os9F5owu6x951hM4VwWGqhjLqLUZ6IBnBdJ4xxURWwntugomuv6QMRU8u_kvdacJ61IbD4TR1sSU43oRGd_TKKtm-_Od_aEz34DNucSW9dvE5Ym8sQ5aBo-zsKLrikhMGIfLEBKB7kkPU5u7A94jo3doXy3EUOYDMS1G2FFLW6usNNN72SeOLOqUwji1bc5pZP3ZQ88MxkUysRck_re0Q1vyCkEWjVxRqkTHOBJQyFvPF-Wz-Zra4qM4uyvN5ubjML8_efq8F7DPI8xxuX8TpZPHkncSuW6PcQDMYLmpNsvfgNngyinxKNFw7iEz05HlSFS-E3UhaCw72UwcK_aYWtdlzHg7Rrv4YKcroB8rE4MZOp-Uhyga7wCgpHa2_ThvmsGj2fwFa_4mn?type=png)](https://mermaid.live/edit#pako:eNq1VMFu2zAM_RVCZ8dOsw5FjSGXddgwrN2A-LS5B0aiay22pEly1iHIv4-OnKJAMaAZWp_kR4rv8YHiTkirSJQi0K-BjKQrjXce-9oAfw591FI7NBHW3v4O5J8GGNyOeIpMabPlMuElfKqqb_DxQwVtjC6URRHioDSFXIa8pS5os9F5owu6x951hM4VwWGqhjLqLUZ6IBnBdJ4xxURWwntugomuv6QMRU8u_kvdacJ61IbD4TR1sSU43oRGd_TKKtm-_Od_aEz34DNucSW9dvE5Ym8sQ5aBo-zsKLrikhMGIfLEBKB7kkPU5u7A94jo3doXy3EUOYDMS1G2FFLW6usNNN72SeOLOqUwji1bc5pZP3ZQ88MxkUysRck_re0Q1vyCkEWjVxRqkTHOBJQyFvPF-Wz-Zra4qM4uyvN5ubjML8_efq8F7DPI8xxuX8TpZPHkncSuW6PcQDMYLmpNsvfgNngyinxKNFw7iEz05HlSFS-E3UhaCw72UwcK_aYWtdlzHg7Rrv4YKcroB8rE4MZOp-Uhyga7wCgpHa2_ThvmsGj2fwFa_4mn)
+
+``` mermaid
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: Code HTML
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the main.css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: the spa.js JavaScript file
+    deactivate server
+
+    Note over browser,server: The browser starts executing the JavaScript <br/>code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "hola buenas tardes", "date": "2024-03-27T17:40:29.915Z" }, ... ]
+    deactivate server
+
+    Note over browser,server: The browser executes the callback function that <br/> renders the notes
+
+```
 
 # 0.6: New note on single-page application diagram
->[![](https://mermaid.ink/img/pako:eNp1Uk2v0zAQ_CuWz6kbO0k_LNTL48AFqGhOj6CnbbKlUVM72M57LVX_O5uPIiTAN8-uZzyze-OlrZBr7vFHh6bE9zV8d3AuDKPTggt1WbdgAts7--bR_V0g8LXHx8rUNttsRlyzD3m-ZdvPu5wdQ2i9ns996KoavSi9OGLja3OqxaGe4wXObYPQtnODby_GBnzxLYy8UIb6FQL-luvBT9TCLF0fstFD9Etvxwe2hWtjoWLs3d7NN-zrjRXk2AQ0oeCaLkfbANuTdfAsgKvQFzwivCKtsUPFKp3FyUwtc7nUaazVWqxl9lxwdo-YEIJ9G8gn2v5J6zrcQ1rwUbXn0n8QrfJY6VhqtRSpSolodDP-fUbRTW402wUInWdPNCOmVSzZk8P-Y0N_hf8M5TGJ_4eTH_GBMbxg2QUk8wSW0DR7KE_s0BmitoZQCFN2Dk2FbmzsZ-N5xM_ozlBXtD-3XrTgVDxPuVXgTr21O_VBF-zuakquA0UT8a7tM5l2jesDNJ5QrOpg3cdxIYe9jDitGNc3fuFaLYRMF6t0lcgsW2RKqYhfCY4zoeQyWSYyTtYLtbpH_Ke1xCpFPBwZq3WWpCuZDXTPQ3GQvP8CJLf3Jw?type=png)](https://mermaid.live/edit#pako:eNp1Uk2v0zAQ_CuWz6kbO0k_LNTL48AFqGhOj6CnbbKlUVM72M57LVX_O5uPIiTAN8-uZzyze-OlrZBr7vFHh6bE9zV8d3AuDKPTggt1WbdgAts7--bR_V0g8LXHx8rUNttsRlyzD3m-ZdvPu5wdQ2i9ns996KoavSi9OGLja3OqxaGe4wXObYPQtnODby_GBnzxLYy8UIb6FQL-luvBT9TCLF0fstFD9Etvxwe2hWtjoWLs3d7NN-zrjRXk2AQ0oeCaLkfbANuTdfAsgKvQFzwivCKtsUPFKp3FyUwtc7nUaazVWqxl9lxwdo-YEIJ9G8gn2v5J6zrcQ1rwUbXn0n8QrfJY6VhqtRSpSolodDP-fUbRTW402wUInWdPNCOmVSzZk8P-Y0N_hf8M5TGJ_4eTH_GBMbxg2QUk8wSW0DR7KE_s0BmitoZQCFN2Dk2FbmzsZ-N5xM_ozlBXtD-3XrTgVDxPuVXgTr21O_VBF-zuakquA0UT8a7tM5l2jesDNJ5QrOpg3cdxIYe9jDitGNc3fuFaLYRMF6t0lcgsW2RKqYhfCY4zoeQyWSYyTtYLtbpH_Ke1xCpFPBwZq3WWpCuZDXTPQ3GQvP8CJLf3Jw)
+
+``` mermaid
+sequenceDiagram
+    participant browser 
+    participant server
+
+    browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note over browser,server: Request Payload  <br/> [{ "content": "hola buenas tardes", "date": "2024-03-27T17:40:29.915Z" }, ... ]<br/>content: "prueba4"<br/> date:"2024-03-28T02:01:27.424Z"
+    server-->>browser: Status Code :201 Create
+    deactivate server
+    
+
+    Note over browser,server: The browser executes the callback function that <br/> renders the notes
+    
+```
